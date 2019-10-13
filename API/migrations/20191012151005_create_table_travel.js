@@ -7,12 +7,18 @@ exports.up = function(knex) {
         table.dateTime('dateOc').notNull()
         table.string('hourOC').notNull()
         table.dateTime('dateEnd').notNull()
+
         table.integer('idClient').references('id')
                                .inTable('client.user')
+                               .notNull()
+
         table.integer('idDrive').references('id')
                                 .inTable('drive.user')
+                                .notNull()
+                                
         table.integer('idCar').references('id')
                               .inTable('car')
+                              .notNull()
                             
     })
 };
