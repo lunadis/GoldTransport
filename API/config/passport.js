@@ -9,7 +9,7 @@ module.exports = app =>{
         secretOrKey: authSecret,
         jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
     }
-    //HACK: Achei um jeito de tratar melhor as validações de token
+    //HACK: need refactor for a better way
     const strategy = new Strategy(params, (payload, done)=>{
             
         app.db('client')

@@ -8,7 +8,7 @@ module.exports = app => {
     const save = (req, res) => {
         getHash(req.body.password, hash => {
             const password = hash
-            //HACK: poderia ser apenas uma table acom o banco sendo passado pela requisicao
+            //HACK: client and driver could be just one table
             app.db('driver')
                 .insert({
                     name: req.body.name,

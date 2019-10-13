@@ -47,7 +47,7 @@ module.exports = app => {
 
         app.db('travel')
             .where({ id: req.params.id })
-            .onNull('idDrive')
+            .whereNull('idDrive')
             .update({
                 idDrive: req.user.id
             })
@@ -71,8 +71,8 @@ module.exports = app => {
 
         app.db('travel')
             .where('dateOc', '<=', date)
-            .onNull('idDrive')
-            .onNull('dateEnd')
+            .whereNull('idDrive')
+            .whereNull('dateEnd')
             .then(travels => res.json(travels))
             .catch(err => res.status(500).json(err))
     }
@@ -89,7 +89,7 @@ module.exports = app => {
     }
 
     const doneTravel = (req, res) => {
-        const dateDone = moment().endOf('day').toDate()
+        const dateDone = moment().format();
 
         app.db('travel')
             .where({ id: req.params.id })

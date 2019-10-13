@@ -1,6 +1,6 @@
 module.exports = app => {
 
-    //Cadastro
+    //SingUp
     app.post('/client/singup', app.api.client.save)
     app.post('/driver/singup', app.api.driver.save)
 
@@ -20,7 +20,7 @@ module.exports = app => {
         .all(app.config.passport.authenticate())
         .delete(app.api.travel.remove)
 
-    
+
     //#endregion
 
     //#region Driver
@@ -28,12 +28,15 @@ module.exports = app => {
     app.route('/driver/travel')
         .all(app.config.passport.authenticate())
         .get(app.api.travel.getTravelsForDriver)
+
+    app.route('/driver/travel/setdriver/:id')
+        .all(app.config.passport.authenticate())
         .put(app.api.travel.setDriver)
 
     app.route('/driver/travelondriver')
         .all(app.config.passport.authenticate())
         .get(app.api.travel.getTravelOnDriver)
-    
+
     app.route('/driver/travel/:id')
         .all(app.config.passport.authenticate())
         .put(app.api.travel.doneTravel)
@@ -41,8 +44,5 @@ module.exports = app => {
     //#endregion
 
     //#endregion
-
-
-
 
 };

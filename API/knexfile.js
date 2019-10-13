@@ -4,9 +4,11 @@ module.exports = {
 
 	client: 'mysql',
 	connection: {
-		database: 'goldt',
-		user: 'root',
-		password: ''
+		host: '200.219.222.25',
+		port: '3306',
+		database: 'gluberco_gold1',
+		user: 'gluberco_luka',
+		password: 'Luka@2019'
 	},
 	pool: {
 		min: 2,

@@ -10,7 +10,7 @@ module.exports = app => {
     const save = (req, res) => {
         getHash(req.body.password, hash => {
             const password = hash
-            //HACK: poderia ser apenas uma table acom o banco sendo passado pela requisicao
+            //HACK: client and driver could be just one table
             app.db('client')
                 .insert({
                     name: req.body.name,
@@ -21,6 +21,10 @@ module.exports = app => {
                 })
                 .then(_ => res.status(204).send())
                 .catch(err => res.status(500).json(err))
+                /*
+                    Summary Element: err
+                    Contains database response massage, we can use this for callback
+                */
         })
     }
 
