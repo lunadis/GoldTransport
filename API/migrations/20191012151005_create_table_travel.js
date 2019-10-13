@@ -6,19 +6,18 @@ exports.up = function(knex) {
         table.string('dest').notNull()
         table.dateTime('dateOc').notNull()
         table.string('hourOC').notNull()
-        table.dateTime('dateEnd').notNull()
+        table.dateTime('dateEnd')
 
         table.integer('idClient').references('id')
-                               .inTable('client.user')
+                               .inTable('client')
                                .notNull()
 
         table.integer('idDrive').references('id')
-                                .inTable('drive.user')
-                                .notNull()
+                                .inTable('drive')
                                 
         table.integer('idCar').references('id')
                               .inTable('car')
-                              .notNull()
+                              //.notNull()
                             
     })
 };
