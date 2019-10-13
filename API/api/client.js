@@ -20,7 +20,7 @@ module.exports = app => {
                     password
                 })
                 .then(_ => res.status(204).send())
-                .catch(err => res.status(400).json(err))
+                .catch(err => res.status(500).json(err))
         })
     }
 

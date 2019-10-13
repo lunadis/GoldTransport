@@ -10,7 +10,7 @@ module.exports = app =>{
         jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
     }
     //HACK: Achei um jeito de tratar melhor as validações de token
-    const Strategy = new Strategy(params, (payload, done)=>{
+    const strategy = new Strategy(params, (payload, done)=>{
             
         app.db('client')
             .where({id: payload.id})
@@ -44,10 +44,10 @@ module.exports = app =>{
             .catch(err => done(err, false))
     })
 
-    passport.use(Strategy)
+    passport.use(strategy)
 
     return {
         initialize: () => passport.initialize(),
-        authenticate: () => passport.authenticate()
+        authenticate: () => passport.authenticate('jwt', {session: false})
     }
 }
