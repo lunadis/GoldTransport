@@ -8,16 +8,23 @@ exports.up = function(knex) {
         table.string('hourOC').notNull()
         table.dateTime('dateEnd')
 
-        table.integer('idClient').references('id')
-                               .inTable('client')
-                               .notNull()
+        table.integer('idClient')
+             .unsigned()
+             .notNull()
+             table.foreign('idClient')
+                  .references('client.id')
+        
+        table.integer('idDrive')
+             .unsigned()
+             .notNull()
+             table.foreign('idDrive')
+                  .references('driver.id')
 
-        table.integer('idDrive').references('id')
-                                .inTable('drive')
-                                
-        table.integer('idCar').references('id')
-                              .inTable('car')
-                              //.notNull()
+        table.integer('idCar')
+             .unsigned()
+             .notNull()
+             table.foreign('idCar')
+                  .references('car.id')
                             
     })
 };

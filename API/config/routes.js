@@ -8,6 +8,18 @@ module.exports = app => {
     app.post('/client/singin', app.api.auth.clientSignin)
     app.post('/driver/singin', app.api.auth.driverSignin)
 
+    //SysAdmin
+    app.route('/sysadmin/car')
+       .post(app.api.sysAdmin.saveCar)
+       .get(app.api.sysAdmin.getCars)
+    app.delete('/sysadmin/car/:id', app.api.sysAdmin.removeCar)
+    
+    app.route('/sysadmin/driver')
+       .post(app.api.sysAdmin.saveDriver)
+       .get(app.api.sysAdmin.getDrivers)
+   
+    app.delete('/sysadmin/driver/:id', app.api.sysAdmin.removeDriver)
+    
     //#region travel
 
     //#region Client
