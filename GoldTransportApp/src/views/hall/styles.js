@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import metrics from '../../utils/Commom/Styles/metrics';
+import metrics from '../../utils/Common/Styles/metrics';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 const styles = StyleSheet.create({
@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     width: metrics.screenWidth,
     height: metrics.screenHeight,
     backgroundColor: Colors.dark,
+    fontFamily: 'Open Sans',
   },
   formContainer: {},
   button: {
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginBottom: metrics.screenHeight / 50,
     width: metrics.screenWidth * 0.5,
-    height: metrics.screenHeight * 0.1
+    height: metrics.screenHeight * 0.1,
   },
   logoField: {
     alignItems: 'center',
