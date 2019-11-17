@@ -6,9 +6,13 @@ import {
   SafeAreaView,
   TextInput,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert,
+  AsyncStorage,
 } from 'react-native';
 import styles from '../auth/styles';
+import {server, showError} from '../../utils/Common/api/commom';
+import axios from 'axios';
 
 export class Auth extends Component {
   constructor(props) {
@@ -18,6 +22,25 @@ export class Auth extends Component {
       password: '',
     };
   }
+
+  onLogin = async () => {
+    //TODO: Need server up for implementation
+    //Alert.alert('Deu certo!', 'Login acontecendo');
+    try {
+      // const res = axios.post(`${server}/client/sigin`, {
+      //   email: this.state.email,
+      //   password: this.state.password,
+      // });
+
+      // axios.defaults.headers.common['Authorization'] = `bearer ${res.data.token}`;
+      // AsyncStorage.setItem('userData', JSON.stringify(res.data));
+      this.props.navigation.navigate('home');
+      
+    } catch (error) {
+      Alert.alert('Erro no login', `O login apresentou erro => ${error}`);
+    }
+  };
+
   render() {
     return (
       <ImageBackground
@@ -47,7 +70,9 @@ export class Auth extends Component {
               secureTextEntry={true}
               style={styles.input}
               placeholderTextColor="#385959"
-              placeholder='**************'
+              placeholder="**************"
+              returnKeyType="go"
+              onSubmitEditing={this.onLogin}
               onChangeText={password => this.setState({password})}
               ref={input => (this.senhaInput = input)}
             />
@@ -56,9 +81,11 @@ export class Auth extends Component {
               source={require('../../../Assets/Icons/password.png')}
             />
           </View>
-          <TouchableOpacity>
-            <Text>Login</Text>
-          </TouchableOpacity>
+          <View style={styles.buttonArea}>
+            <TouchableOpacity style={styles.button} onPress={this.onLogin}>
+              <Text style={styles.textButton}>Começar</Text>
+            </TouchableOpacity>
+          </View>
         </SafeAreaView>
       </ImageBackground>
     );

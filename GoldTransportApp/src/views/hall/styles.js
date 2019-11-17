@@ -1,11 +1,10 @@
 import {StyleSheet} from 'react-native';
 import metrics from '../../utils/Common/Styles/metrics';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
+    alignItems: 'center',
     justifyContent: 'center',
     width: metrics.screenWidth,
     height: metrics.screenHeight,
@@ -22,10 +21,10 @@ const styles = StyleSheet.create({
     width: metrics.screenWidth * 0.5,
     height: metrics.screenHeight * 0.1,
   },
-  textButton:{
+  textButton: {
     fontSize: 16,
     color: '#fff',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   logoField: {
     alignItems: 'center',

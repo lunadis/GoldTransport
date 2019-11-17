@@ -34,10 +34,29 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
   },
+  buttonArea:{
+    marginTop: 20, 
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  button:{
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#dc9738',
+    borderRadius: 20,
+    marginBottom: metrics.screenHeight / 80,
+    width: metrics.screenWidth * 0.5,
+    height: metrics.screenHeight * 0.07,
+  },
+  textButton:{
+    color: '#fff',
+    fontFamily: "Open Sans",
+    fontWeight: "bold",
+  },
   icon:{
     width: 25,
     height: 25,
-  }
+  },
 });
 
 export default styles;
