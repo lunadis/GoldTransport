@@ -5,7 +5,7 @@ export class Signup extends Component {
   render() {
     return (
       <View>
-        <Text> textInComponent </Text>
+        <Text> Cadastrar </Text>
       </View>
     );
   }

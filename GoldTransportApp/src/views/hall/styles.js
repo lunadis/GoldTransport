@@ -5,22 +5,27 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    alignItems: "center",
+    justifyContent: 'center',
     width: metrics.screenWidth,
     height: metrics.screenHeight,
-    backgroundColor: Colors.dark,
+    backgroundColor: '#111C26',
     fontFamily: 'Open Sans',
+    resizeMode: 'contain',
   },
-  formContainer: {},
   button: {
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#dc9738',
-    borderRadius: 10,
-    marginBottom: metrics.screenHeight / 50,
+    borderRadius: 20,
+    marginBottom: metrics.screenHeight / 25,
     width: metrics.screenWidth * 0.5,
     height: metrics.screenHeight * 0.1,
+  },
+  textButton:{
+    fontSize: 16,
+    color: '#fff',
+    fontWeight: 'bold'
   },
   logoField: {
     alignItems: 'center',
