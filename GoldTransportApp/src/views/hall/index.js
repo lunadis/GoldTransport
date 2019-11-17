@@ -2,17 +2,19 @@ import React, {Component} from 'react';
 import {
   Text,
   View,
-  SafeAreaView,
   StatusBar,
   Image,
   TouchableOpacity,
+  ImageBackground,
 } from 'react-native';
 import styles from './styles';
 
 export class Hall extends Component {
-  render() {
+render() {
     return (
-      <SafeAreaView style={styles.container}>
+      <ImageBackground
+        source={require('../../../Assets/backgound/bgCont.png')}
+        style={styles.container}>
         <View style={styles.logoField}>
           <Image
             style={styles.logo}
@@ -20,12 +22,19 @@ export class Hall extends Component {
             source={require('../../../Assets/Icons/logo.png')}
           />
         </View>
+        <Image source={require('../../../Assets/Icons/brush.png')} />
         <View style={styles.formContainer}>
-          <TouchableOpacity style={styles.button} title="Entrar">
-            <Text>Entar</Text>
+          <TouchableOpacity
+            style={styles.button}
+            title="Entrar"
+            onPress={() => this.props.navigation.navigate('auth')}>
+            <Text style={styles.textButton}>Entar</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} title="Entrar">
-            <Text>Cadastrar</Text>
+          <TouchableOpacity
+            style={styles.button}
+            title="Entrar"
+            onPress={() => this.props.navigation.navigate('signup')}>
+            <Text style={styles.textButton}>Cadastrar</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.flagPraime}>
@@ -36,7 +45,7 @@ export class Hall extends Component {
           />
         </View>
         <StatusBar translucent={true} backgroundColor={'transparent'} />
-      </SafeAreaView>
+      </ImageBackground>
     );
   }
 }
