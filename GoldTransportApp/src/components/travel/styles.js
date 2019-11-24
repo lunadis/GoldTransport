@@ -33,6 +33,8 @@ const styles = StyleSheet.create({
     width: 50,
     height: 30,
     borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
   },
   statusPendente: {
     marginTop: 10,
@@ -40,6 +42,8 @@ const styles = StyleSheet.create({
     width: 50,
     height: 30,
     borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
   },
   statusNegado: {
     marginTop: 10,
@@ -47,6 +51,12 @@ const styles = StyleSheet.create({
     width: 50,
     height: 30,
     borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  status:{
+    fontSize: 9,
+    color: '#fff',
   },
   TextData: {
     borderBottomColor: '#183939',

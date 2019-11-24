@@ -8,10 +8,10 @@ import {
   Image,
   TouchableOpacity,
   Alert,
-  AsyncStorage,
 } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import styles from '../auth/styles';
-import {server, showError} from '../../utils/Common/api/commom';
+import {server, showError} from '../../utils/Common/api/common';
 import axios from 'axios';
 
 export class Auth extends Component {
@@ -24,18 +24,16 @@ export class Auth extends Component {
   }
 
   onLogin = async () => {
-    //TODO: Need server up for implementation
-    //Alert.alert('Deu certo!', 'Login acontecendo');
     try {
-      // const res = axios.post(`${server}/client/sigin`, {
-      //   email: this.state.email,
-      //   password: this.state.password,
-      // });
+      const res = await axios.post(`${server}/client/signing`, {
+        email: this.state.email,
+        password: this.state.password,
+      });
 
-      // axios.defaults.headers.common['Authorization'] = `bearer ${res.data.token}`;
-      // AsyncStorage.setItem('userData', JSON.stringify(res.data));
+      // eslint-disable-next-line prettier/prettier
+      axios.defaults.headers.common['Authorization'] = `bearer ${res.data.token}`;
+      AsyncStorage.setItem('userData', JSON.stringify(res.data));
       this.props.navigation.navigate('home');
-      
     } catch (error) {
       Alert.alert('Erro no login', `O login apresentou erro => ${error}`);
     }

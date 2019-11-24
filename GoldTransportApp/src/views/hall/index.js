@@ -8,9 +8,24 @@ import {
   ImageBackground,
 } from 'react-native';
 import styles from './styles';
+import axios from 'axios';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export class Hall extends Component {
-render() {
+  componentDidMount() {
+    this._loadInitialState().done();
+  }
+
+  _loadInitialState = async () => {
+    const json = await AsyncStorage.getItem('userData');
+    const userData = JSON.parse(json) || {};
+    if (userData.token) {
+      axios.defaults.headers.common['Authorization'] = `bearer ${userData.token}`;
+      this.props.navigation.navigate('home', userData);
+    }
+  };
+
+  render() {
     return (
       <ImageBackground
         source={require('../../../Assets/backgound/bgCont.png')}
@@ -32,7 +47,7 @@ render() {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.button}
-            title="Entrar"
+            title="Cadastrar"
             onPress={() => this.props.navigation.navigate('signup')}>
             <Text style={styles.textButton}>Cadastrar</Text>
           </TouchableOpacity>
