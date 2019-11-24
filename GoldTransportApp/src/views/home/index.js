@@ -7,45 +7,52 @@ import {
   Image,
   StatusBar,
   FlatList,
+  Alert,
 } from 'react-native';
+import moment from 'moment';
+import axios from 'axios';
+import {server, showError} from '../../utils/Common/api/common';
 import Tavel from '../../components/travel/Travel';
+import AddTravel from '../../components/addTravels/AddTravel';
 import styles from './styles';
 
 export class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      travels: [
-        {
-          id: 1,
-          pickUp: 'aero guarulhos',
-          dest: 'pulma',
-          dateOc: '2019-10-13',
-          hourOC: '17:15',
-          driver: 'carlos',
-          status: 'confirmado',
-        },
-        {
-          id: 2,
-          pickUp: 'pulma',
-          dest: 'Aero guarulhos',
-          dateOc: '2019-10-14',
-          hourOC: '17:15',
-          driver: 'carlos',
-          status: 'pendente',
-        },
-        {
-          id: 3,
-          pickUp: 'pulma',
-          dest: 'Aero guarulhos',
-          dateOc: '2019-10-14',
-          hourOC: '17:15',
-          driver: 'carlos',
-          status: 'negado',
-        },
-      ],
+      travels: [],
+      showAddTravel: false,
     };
   }
+  componentDidMount = async () => {
+    this.loadTravels();
+  };
+  addTravel = async Travels => {
+    console.log(JSON.stringify(Travels));
+    const date = moment(Travels.date)
+      .locale('pt-br')
+      .format('YYYY-MM-DD');
+    try {
+      await axios.post(`${server}/travel`, {
+        pickUp: Travels.pickUp,
+        dest: Travels.dest,
+        dateOc: date,
+        hourOC: '17:30',
+      });
+      this.setState({showAddTravel: false}, this.loadTravels);
+    } catch (err) {
+      showError(err);
+    }
+  };
+
+  loadTravels = async () => {
+    try {
+      const res = await axios.get(`${server}/travel`);
+      this.setState({travels: res.data});
+    } catch (err) {
+      showError(err);
+    }
+  };
 
   render() {
     const {travels} = this.state;
@@ -62,7 +69,16 @@ export class Home extends Component {
         </View>
         <View style={styles.fixedMenu}>
           <View style={styles.buttonArea}>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+              onPress={() => {
+                this.setState({showAddTravel: true});
+              }}
+              style={styles.button}>
+              <AddTravel
+                isVisible={this.state.showAddTravel}
+                onCancel={() => this.setState({showAddTravel: false})}
+                onSave={this.addTravel}
+              />
               <Text style={styles.textButton}>+</Text>
             </TouchableOpacity>
           </View>

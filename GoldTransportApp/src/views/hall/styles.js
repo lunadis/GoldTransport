@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: metrics.screenWidth,
-    height: metrics.screenHeight,
+    height: metrics.screenHeight - metrics.statusBarHeight,
     backgroundColor: '#111C26',
     fontFamily: 'Open Sans',
     resizeMode: 'contain',
